@@ -16,7 +16,7 @@ resource "rke_cluster" "rke_cluster" {
     content {
       address = nodes.value.ip_address
       user    = "terraform"
-      role    = ["controlplane", "etcd"]
+      role    = ["worker"]
       ssh_key = var.provisioner_ssh_key
     }
   }
