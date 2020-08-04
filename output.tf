@@ -58,7 +58,6 @@ output "node_groups" {
 }
 
 
-
 output "cluster" {
   value = rke_cluster.this
 }
