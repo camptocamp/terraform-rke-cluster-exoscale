@@ -57,5 +57,5 @@ output "node_groups" {
 }
 
 output "kube_config_yaml" {
-  value = rke_cluster.rke_cluster.kube_config_yaml
+  value = rke_cluster.this.kube_config_yaml
 }
