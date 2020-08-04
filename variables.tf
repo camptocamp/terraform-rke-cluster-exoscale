@@ -62,23 +62,28 @@ variable "etcd_snapshots_enabled" {
 }
 
 variable "etcd_snapshots_s3_access_key" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "etcd_snapshots_s3_secret_key" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "etcd_snapshots_s3_bucket_name" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "etcd_snapshots_s3_region" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "etcd_snapshots_s3_endpoint" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "tags" {
