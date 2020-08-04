@@ -23,24 +23,24 @@ resource "rke_cluster" "this" {
     }
   }
 
-  services {
-    etcd {
-      snapshot = var.etcd_snapshots_enabled
+  #services {
+  #  etcd {
+  #    snapshot = var.etcd_snapshots_enabled
 
-      backup_config {
-        interval_hours = var.etcd_snapshots_interval_hours
-        retention = var.etcd_snapshots_retention
+  #    backup_config {
+  #      interval_hours = var.etcd_snapshots_interval_hours
+  #      retention = var.etcd_snapshots_retention
 
-        s3_backup_config {
-          access_key = var.etcd_snapshots_s3_access_key
-          secret_key = var.etcd_snapshots_s3_secret_key
-          bucket_name = var.etcd_snapshots_s3_bucket_name
-          region = var.etcd_snapshots_s3_region
-          endpoint = var.etcd_snapshots_s3_endpoint
-        }
-      }
-    }
-  }
+  #      s3_backup_config {
+  #        access_key = var.etcd_snapshots_s3_access_key
+  #        secret_key = var.etcd_snapshots_s3_secret_key
+  #        bucket_name = var.etcd_snapshots_s3_bucket_name
+  #        region = var.etcd_snapshots_s3_region
+  #        endpoint = var.etcd_snapshots_s3_endpoint
+  #      }
+  #    }
+  #  }
+  #}
 
   network {
     plugin = "canal"
