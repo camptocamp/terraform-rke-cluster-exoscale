@@ -1,3 +1,4 @@
+# From Openshift?
 output "api_external_domain" {
   value = local.api_external_domain
 }
@@ -56,6 +57,7 @@ output "node_groups" {
   }
 }
 
-output "kube_config_yaml" {
-  value = rke_cluster.this.kube_config_yaml
+
+output "cluster" {
+  value = rke_cluster.this
 }
