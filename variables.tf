@@ -30,21 +30,21 @@ variable "provisioner_ssh_key" {
   type = string
 }
 
-variable "puppet_server" {
-  type = string
-}
-
-variable "puppet_ca_server" {
-  type = string
-}
-
-variable "puppet_environment" {
-  type = string
-}
-
-variable "puppet_psk" {
-  type = string
-}
+#variable "puppet_server" {
+#  type = string
+#}
+#
+#variable "puppet_ca_server" {
+#  type = string
+#}
+#
+#variable "puppet_environment" {
+#  type = string
+#}
+#
+#variable "puppet_psk" {
+#  type = string
+#}
 
 variable "node_groups" {
   type = map(object({
@@ -54,7 +54,7 @@ variable "node_groups" {
     size           = string
     disk_size      = number
 
-    puppet_role = string
+#    puppet_role = string
   }))
 }
 

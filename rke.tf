@@ -4,7 +4,7 @@ resource "rke_cluster" "rke_cluster" {
     for_each = module.master_nodes.instances
     content {
       address = nodes.value.ip_address
-      user    = "terraform"
+      user    = "rancher"
       role    = ["controlplane", "etcd"]
       ssh_key = var.provisioner_ssh_key
     }
@@ -15,7 +15,7 @@ resource "rke_cluster" "rke_cluster" {
     for_each = module.is_worker_nodes.instances
     content {
       address = nodes.value.ip_address
-      user    = "terraform"
+      user    = "rancher"
       role    = ["worker"]
       ssh_key = var.provisioner_ssh_key
     }
