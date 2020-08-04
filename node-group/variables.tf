@@ -54,26 +54,6 @@ variable "provisioner_ssh_key" {
   type = string
 }
 
-#variable "puppet_server" {
-#  type = string
-#}
-#
-#variable "puppet_ca_server" {
-#  type = string
-#}
-#
-#variable "puppet_environment" {
-#  type = string
-#}
-#
-#variable "puppet_role" {
-#  type = string
-#}
-#
-#variable "puppet_psk" {
-#  type = string
-#}
-
 variable "tags" {
   type = map(string)
 }

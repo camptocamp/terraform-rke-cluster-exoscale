@@ -23,12 +23,6 @@ module "master_nodes" {
 
   provisioner_ssh_key = var.provisioner_ssh_key
 
-#  puppet_server      = var.puppet_server
-#  puppet_ca_server   = var.puppet_ca_server
-#  puppet_environment = var.puppet_environment
-#  puppet_role        = var.node_groups.master_nodes.puppet_role
-#  puppet_psk         = var.puppet_psk
-
   security_group_ids = concat(var.security_group_ids, [exoscale_security_group.this.id])
 
   tags = var.tags
@@ -58,12 +52,6 @@ module "is_worker_nodes" {
   dns_ttl     = var.dns_ttl
 
   provisioner_ssh_key = var.provisioner_ssh_key
-
-#  puppet_server      = var.puppet_server
-#  puppet_ca_server   = var.puppet_ca_server
-#  puppet_environment = var.puppet_environment
-#  puppet_role        = var.node_groups.is_worker_nodes.puppet_role
-#  puppet_psk         = var.puppet_psk
 
   security_group_ids = concat(var.security_group_ids, [exoscale_security_group.this.id])
 
