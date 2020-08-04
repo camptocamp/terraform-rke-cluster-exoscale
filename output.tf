@@ -62,3 +62,7 @@ output "node_groups" {
 output "cluster" {
   value = rke_cluster.this
 }
+
+output "route53_zone" {
+  value = aws_route53_zone.this
+}
