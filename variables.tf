@@ -46,44 +46,19 @@ variable "service_accounts" {
   }))
 }
 
-variable "etcd_snapshots_interval_hours" {
-  type = number
-  default = 6
-}
-
-variable "etcd_snapshots_retention" {
-  type = number
-  default = 28
-}
-
-variable "etcd_snapshots_enabled" {
-  type    = bool
-  default = false
-}
-
-variable "etcd_snapshots_s3_access_key" {
-  type    = string
-  default = ""
-}
-
-variable "etcd_snapshots_s3_secret_key" {
-  type    = string
-  default = ""
-}
-
-variable "etcd_snapshots_s3_bucket_name" {
-  type    = string
-  default = ""
-}
-
-variable "etcd_snapshots_s3_region" {
-  type    = string
-  default = ""
-}
-
-variable "etcd_snapshots_s3_endpoint" {
-  type    = string
-  default = ""
+variable "etcd_snapshots" {
+  type = object({
+    interval_hours = number
+    retention      = number
+    enabled        = bool
+    s3             = object({
+      access_key  = string
+      secret_key  = string
+      bucket_name = string
+      region      = string
+      endpoint    = string
+    })
+  })
 }
 
 variable "tags" {

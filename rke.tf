@@ -25,18 +25,18 @@ resource "rke_cluster" "this" {
 
   services {
     etcd {
-      snapshot = var.etcd_snapshots_enabled
+      snapshot = var.etcd_snapshots.enabled
 
       backup_config {
-        interval_hours = var.etcd_snapshots_interval_hours
-        retention = var.etcd_snapshots_retention
+        interval_hours = var.etcd_snapshots.interval_hours
+        retention = var.etcd_snapshots.retention
 
         s3_backup_config {
-          access_key = var.etcd_snapshots_s3_access_key
-          secret_key = var.etcd_snapshots_s3_secret_key
-          bucket_name = var.etcd_snapshots_s3_bucket_name
-          region = var.etcd_snapshots_s3_region
-          endpoint = var.etcd_snapshots_s3_endpoint
+          access_key  = var.etcd_snapshots.s3.access_key
+          secret_key  = var.etcd_snapshots.s3.secret_key
+          bucket_name = var.etcd_snapshots.s3.bucket_name
+          region      = var.etcd_snapshots.s3.region
+          endpoint    = var.etcd_snapshots.s3.endpoint
         }
       }
     }
