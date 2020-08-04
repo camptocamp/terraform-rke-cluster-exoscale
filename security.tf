@@ -14,6 +14,17 @@ resource "exoscale_security_group_rule" "allow_ssh_from_everywhere" {
 }
 
 
+# Inbound: Control Plane
+resource "exoscale_security_group_rule" "allow_controlplane_from_everywhere" {
+  security_group_id      = exoscale_security_group.this.id
+  type                   = "INGRESS"
+  protocol               = "TCP"
+  cidr                   = "0.0.0.0/0"
+  start_port             = 6443
+  end_port               = 6443
+}
+
+
 # Open everything between nodes
 
 resource "exoscale_security_group_rule" "allow_udp_between_all_nodes" {
