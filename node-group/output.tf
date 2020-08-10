@@ -4,6 +4,7 @@ output "instances" {
     {
       hostname   = aws_route53_record.this[i].fqdn
       ip_address = exoscale_compute.this[i].ip_address
+      name       = exoscale_compute.this[i].name
     }
   ]
 }
