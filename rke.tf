@@ -4,22 +4,44 @@ resource "rke_cluster" "this" {
     for_each = module.master_nodes.instances
     content {
       address           = nodes.value.ip_address
-      hostname_override = nodes.value.name
+      hostname_override = nodes.value.hostname
       user              = "rancher"
       role              = ["controlplane", "etcd"]
       ssh_key           = var.provisioner_ssh_key
     }
   }
 
-  # workers
+  # routers
   dynamic "nodes" {
-    for_each = module.is_worker_nodes.instances
+    for_each = module.router_nodes.instances
     content {
       address           = nodes.value.ip_address
-      hostname_override = nodes.value.name
+      hostname_override = nodes.value.hostname
       user              = "rancher"
       role              = ["worker"]
       ssh_key           = var.provisioner_ssh_key
+      labels            = {
+        app = "ingress"
+      }
+    }
+  }
+
+  # workers
+  dynamic "nodes" {
+    for_each = module.worker_nodes.instances
+    content {
+      address           = nodes.value.ip_address
+      hostname_override = nodes.value.hostname
+      user              = "rancher"
+      role              = ["worker"]
+      ssh_key           = var.provisioner_ssh_key
+    }
+  }
+
+  ingress {
+    provider = "nginx"
+    node_selector = {
+      app = "ingress"
     }
   }
 

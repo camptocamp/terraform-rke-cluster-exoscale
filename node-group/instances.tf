@@ -5,23 +5,30 @@ resource "exoscale_affinity" "this" {
   type = "host anti-affinity"
 }
 
-resource "exoscale_compute" "this" {
-  count = var.instance_count
 
-  zone         = var.zone
-  display_name = format("%s-%d", var.name_prefix, count.index)
-  hostname     = local.hostnames[count.index]
-  reverse_dns  = format("%s.", local.fqdns[count.index])
-  template_id  = var.template_id
-  size         = var.size
-  disk_size    = var.disk_size
-  key_pair     = var.key_pair
+resource "exoscale_instance_pool" "this" {
+  zone = var.zone
+  name = var.name
+  template_id = var.template_id
+  size = var.instance_count
+  service_offering = var.size
+  disk_size = var.disk_size
+  key_pair = var.key_pair
 
-  affinity_group_ids = [
-    exoscale_affinity.this[floor(count.index / 8)].id
-  ]
+#  affinity_group_ids = [
+#    exoscale_affinity.this[floor(count.index / 8)].id
+#  ]
 
   security_group_ids = concat(var.security_group_ids, [exoscale_security_group.this.id])
 
-  tags = var.tags
+  timeouts {
+    delete = "10m"
+  }
+}
+
+data "exoscale_compute" "this" {
+  count = var.instance_count
+  depends_on = [exoscale_instance_pool.this]
+
+  hostname = sort(exoscale_instance_pool.this.virtual_machines)[count.index]
 }
