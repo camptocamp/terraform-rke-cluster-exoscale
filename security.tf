@@ -24,6 +24,16 @@ resource "exoscale_security_group_rule" "allow_controlplane_from_everywhere" {
   end_port               = 6443
 }
 
+# Inbound: Node Ports
+resource "exoscale_security_group_rule" "allow_nodeports_from_everywhere" {
+  security_group_id      = exoscale_security_group.this.id
+  type                   = "INGRESS"
+  protocol               = "TCP"
+  cidr                   = "0.0.0.0/0"
+  start_port             = 30000
+  end_port               = 32768
+}
+
 
 # Open everything between nodes
 
