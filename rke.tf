@@ -23,6 +23,11 @@ resource "rke_cluster" "this" {
       labels            = {
         app = "ingress"
       }
+      labels {
+        key    = "app"
+        value  = "ingress"
+        effect = "NoSchedule"
+      }
     }
   }
 
