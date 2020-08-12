@@ -15,8 +15,7 @@ resource "exoscale_nlb_service" "console" {
 
   healthcheck {
     port = 6443
-    mode = "https"
-    uri = "/healthz"
+    mode = "tcp"
     interval = 10
     timeout = 3
     retries = 2
@@ -41,8 +40,7 @@ resource "exoscale_nlb_service" "apps-http" {
 
   healthcheck {
     port = 80
-    mode = "http"
-    uri = "/_______internal_router_healthz"
+    mode = "tcp"
     interval = 10
     timeout = 3
     retries = 2
@@ -61,8 +59,7 @@ resource "exoscale_nlb_service" "apps-https" {
 
   healthcheck {
     port = 443
-    mode = "https"
-    uri = "/_______internal_router_healthz"
+    mode = "tcp"
     interval = 10
     timeout = 3
     retries = 2
