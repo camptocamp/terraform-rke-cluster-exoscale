@@ -23,7 +23,7 @@ resource "rke_cluster" "this" {
       labels            = {
         app = "ingress"
       }
-      labels {
+      taints {
         key    = "app"
         value  = "ingress"
         effect = "NoSchedule"
