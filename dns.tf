@@ -20,7 +20,7 @@ resource "aws_route53_record" "api_external" {
   zone_id = aws_route53_zone.this.id
   name    = trimsuffix(local.api_external_domain, local.domain)
   type    = "A"
-  ttl     = "15"
+  ttl     = 15
 
   records = [
     exoscale_nlb.masters.ip_address
@@ -33,7 +33,7 @@ resource "aws_route53_record" "api_internal" {
   zone_id = aws_route53_zone.this.id
   name    = trimsuffix(local.api_internal_domain, local.domain)
   type    = "A"
-  ttl     = "15"
+  ttl     = 15
 
   records = [
     exoscale_nlb.masters.ip_address
@@ -46,7 +46,7 @@ resource "aws_route53_record" "console" {
   zone_id = aws_route53_zone.this.id
   name    = trimsuffix(local.console_domain, local.domain)
   type    = "A"
-  ttl     = "15"
+  ttl     = 15
 
   records = [
     exoscale_nlb.masters.ip_address
@@ -59,7 +59,7 @@ resource "aws_route53_record" "applications" {
   zone_id = aws_route53_zone.this.id
   name    = format("*.%s", trimsuffix(local.applications_domain, local.domain))
   type    = "A"
-  ttl     = "15"
+  ttl     = 15
 
   records = [
     exoscale_nlb.routers.ip_address
