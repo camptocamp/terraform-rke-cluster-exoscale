@@ -4,7 +4,7 @@ terraform {
       source = "hashicorp/aws"
     }
     exoscale = {
-      source = "terraform-providers/exoscale"
+      source = "exoscale/exoscale"
     }
     rke = {
       source = "rancher/rke"
