@@ -25,8 +25,6 @@ resource "aws_route53_record" "api_external" {
   records = [
     exoscale_nlb.masters.ip_address
   ]
-
-  set_identifier  = format("%s-api-external", var.name)
 }
 
 resource "aws_route53_record" "api_internal" {
@@ -38,8 +36,6 @@ resource "aws_route53_record" "api_internal" {
   records = [
     exoscale_nlb.masters.ip_address
   ]
-
-  set_identifier  = format("%s-api-internal", var.name)
 }
 
 resource "aws_route53_record" "console" {
@@ -51,8 +47,6 @@ resource "aws_route53_record" "console" {
   records = [
     exoscale_nlb.masters.ip_address
   ]
-
-  set_identifier  = format("%s-console", var.name)
 }
 
 resource "aws_route53_record" "applications" {
@@ -64,6 +58,4 @@ resource "aws_route53_record" "applications" {
   records = [
     exoscale_nlb.routers.ip_address
   ]
-
-  set_identifier  = format("%s-applications", var.name)
 }
