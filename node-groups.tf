@@ -9,17 +9,10 @@ module "master_nodes" {
   name           = format("%s-master-nodes", var.name)
   instance_count = var.node_groups.master_nodes.instance_count
   zone           = var.zone
-  name_prefix    = format("%s-%s", var.name, var.node_groups.master_nodes.name)
   template_id    = var.node_groups.master_nodes.template_id
   size           = var.node_groups.master_nodes.size
   disk_size      = var.node_groups.master_nodes.disk_size
   key_pair       = var.key_pair
-
-  hostname_prefix = var.node_groups.master_nodes.name
-  domain          = local.domain
-
-  dns_zone_id = aws_route53_zone.this.zone_id
-  dns_ttl     = var.dns_ttl
 
   provisioner_ssh_key = var.provisioner_ssh_key
 
@@ -39,17 +32,10 @@ module "router_nodes" {
   name           = format("%s-is-router-nodes", var.name)
   instance_count = var.node_groups.router_nodes.instance_count
   zone           = var.zone
-  name_prefix    = format("%s-%s", var.name, var.node_groups.router_nodes.name)
   template_id    = var.node_groups.router_nodes.template_id
   size           = var.node_groups.router_nodes.size
   disk_size      = var.node_groups.router_nodes.disk_size
   key_pair       = var.key_pair
-
-  hostname_prefix = var.node_groups.router_nodes.name
-  domain          = local.domain
-
-  dns_zone_id = aws_route53_zone.this.zone_id
-  dns_ttl     = var.dns_ttl
 
   provisioner_ssh_key = var.provisioner_ssh_key
 
@@ -69,17 +55,10 @@ module "worker_nodes" {
   name           = format("%s-is-worker-nodes", var.name)
   instance_count = var.node_groups.worker_nodes.instance_count
   zone           = var.zone
-  name_prefix    = format("%s-%s", var.name, var.node_groups.worker_nodes.name)
   template_id    = var.node_groups.worker_nodes.template_id
   size           = var.node_groups.worker_nodes.size
   disk_size      = var.node_groups.worker_nodes.disk_size
   key_pair       = var.key_pair
-
-  hostname_prefix = var.node_groups.worker_nodes.name
-  domain          = local.domain
-
-  dns_zone_id = aws_route53_zone.this.zone_id
-  dns_ttl     = var.dns_ttl
 
   provisioner_ssh_key = var.provisioner_ssh_key
 
